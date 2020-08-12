@@ -4,6 +4,7 @@ class CalendarsController < ApplicationController
   def index
     get_Week
     @plan = Plan.new
+    
   end
 
   # 予定の保存
@@ -34,9 +35,8 @@ class CalendarsController < ApplicationController
       plan = @plans.map do |plan|
         plans.push(plan.plan) if plan.date == @todays_date + x
       end
-      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: plans}
+      days = { month: (@todays_date + x).month, date: (@todays_date+x).day, plans: plans, wday: wdays[(@todays_date+x).wday]}
       @week_days.push(days)
     end
-
   end
 end
